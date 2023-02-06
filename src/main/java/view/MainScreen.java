@@ -12,7 +12,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     public MainScreen() {
         initComponents();
-        this.addKeyListener(this);
+        //this.addKeyListener(this);
         refreshScreen();
     }
 
@@ -224,6 +224,11 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         jButtonMinus.setBackground(new java.awt.Color(204, 255, 204));
         jButtonMinus.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jButtonMinus.setText("-");
+        jButtonMinus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMinusMouseClicked(evt);
+            }
+        });
 
         jButtonTimes.setBackground(new java.awt.Color(204, 255, 204));
         jButtonTimes.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
@@ -325,14 +330,28 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         // TODO add your handling code here:
         refreshScreen();
         refreshEntries();
+        sign = "";
     }//GEN-LAST:event_jButtonCEMouseClicked
 
     private void jButtonBackSpaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBackSpaceMouseClicked
         // TODO add your handling code here:
         if (!screen.isEmpty()) {
-            screen = screen.substring(0, (screen.length() - 1));
-            jTextFieldScreen.setText(screen);
+            if (firstEntry == 0) {
+                screen = screen.substring(0, (screen.length() - 1));
+                jTextFieldScreen.setText(screen);
+            } else {
+                screen = screen.substring(0, (screen.length() - 1));
+                firstEntry = Integer.parseInt(screen);
+                jTextFieldScreen.setText(screen);
+            }
+        } else {
+            if (firstEntry == 0) {
+            } else {
+                screen = Integer.toString(firstEntry);
+                jTextFieldScreen.setText(screen);
+            }
         }
+        sign = "bkspc";
     }//GEN-LAST:event_jButtonBackSpaceMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -385,38 +404,49 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     private void jButtonPlusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPlusMouseClicked
         // TODO add your handling code here:
-        if (firstEntry == 0) {
-            firstEntry = firstEntry + Integer.parseInt(screen);
-            screen = screen + "+";
-            jTextFieldScreen.setText(screen);
-            screen = "";
-            sign = "plus";
-        } else {
-            if (screen.isEmpty()) {
-                screen = Integer.toString(firstEntry) + "+";
-                jTextFieldScreen.setText(screen);
-                screen = "";
-                sign = "plus";
-            } else {
-                firstEntry = sum(firstEntry, Integer.parseInt(screen));
-                screen = Integer.toString(firstEntry) + "+";
-                jTextFieldScreen.setText(screen);
-                screen = "";
-                sign = "plus";
+        switch (sign) {
+            case "bkspc" -> {
+                break;
+            }
+            case "equals" -> {
+                break;
+            }
+            case "" -> {
+                
+                break;
+            }
+            case "plus" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = screen + "+";
+                        jTextFieldScreen.setText(screen);
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        screen = Integer.toString(firstEntry) + "+";
+                        jTextFieldScreen.setText(screen);
+                    } else {
+                        firstEntry = sum(firstEntry, Integer.parseInt(screen));
+                        screen = Integer.toString(firstEntry) + "+";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    }
+                }
+                break;
             }
         }
+        sign = "plus";
     }//GEN-LAST:event_jButtonPlusMouseClicked
 
     private void jButtonEqualsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEqualsMouseClicked
         // TODO add your handling code here:
         switch (sign) {
             case "plus" -> {
-                if (screen.isEmpty()) {
-                    screen = Integer.toString(firstEntry) + "+";
-                    screen = screen.substring(0, (screen.length() - 1));
-                    jTextFieldScreen.setText(screen);
-                    screen = "";
-                    sign = "";
+                if (firstEntry == 0) {
+                    
                 } else {
                     secondEntry = Integer.parseInt(screen);
                     screen = Integer.toString(sum(firstEntry, secondEntry));
@@ -424,15 +454,42 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                     refreshEntries();
                     firstEntry = Integer.parseInt(screen);
                     screen = "";
-                    sign = "";
                 }
+                break;
+            }
+            case "minus" -> {
+                if (screen.isEmpty()) {
+                    screen = Integer.toString(firstEntry) + "-";
+                    screen = screen.substring(0, (screen.length() - 1));
+                    jTextFieldScreen.setText(screen);
+                    refreshEntries();
+                    screen = "";
+                } else {
+                    secondEntry = Integer.parseInt(screen);
+                    screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                    jTextFieldScreen.setText(screen);
+                    refreshEntries();
+                    firstEntry = Integer.parseInt(screen);
+                    screen = "";
+                }
+                break;
+            }
+            case "bkspc" -> {
+                firstEntry = Integer.parseInt(screen);
+                break;
+            }
+            case "equals" -> {
                 break;
             }
             default -> {
             }
         }
-
+        sign = "equals";
     }//GEN-LAST:event_jButtonEqualsMouseClicked
+
+    private void jButtonMinusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMinusMouseClicked
 
     /**
      * @param args the command line arguments
@@ -505,6 +562,10 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     private int sum(int A, int B) {
         return A + B;
+    }
+
+    private int subtraction(int A, int B) {
+        return A - B;
     }
 
     @Override
