@@ -386,8 +386,18 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                     break;
                 }
                 case "minus" -> {
-                    screen = "-1";
-                    jTextFieldScreen.setText(screen);
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "1";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-1";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "1";
+                        jTextFieldScreen.setText(screen);
+                    }
                     break;
                 }
                 case "plus" -> {
@@ -451,12 +461,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "2";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "2";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "2";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-2";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "2";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "2";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "2";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "2";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "2";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton2MouseClicked
@@ -467,12 +510,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "3";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "3";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "3";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-3";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "3";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "3";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "3";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "3";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "3";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton3MouseClicked
@@ -483,12 +559,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "4";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "4";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "4";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-4";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "4";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "4";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "4";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "4";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "4";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton4MouseClicked
@@ -499,12 +608,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "5";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "5";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "5";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-5";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "5";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "5";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "5";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "5";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "5";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton5MouseClicked
@@ -515,12 +657,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "6";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "6";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "6";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-6";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "6";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "6";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "6";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "6";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "6";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton6MouseClicked
@@ -531,12 +706,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "7";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "7";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "7";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-7";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "7";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "7";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "7";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "7";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "7";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton7MouseClicked
@@ -547,12 +755,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "8";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "8";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "8";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-8";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "8";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "8";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "8";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "8";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "8";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton8MouseClicked
@@ -563,12 +804,45 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             screen = screen + "9";
             jTextFieldScreen.setText(screen);
         } else {
-            if (sign.equals("equals")) {
-                refreshEntries();
-                refreshOperations();
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "9";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    if (firstEntry == 0) {
+                        if (screen.isEmpty()) {
+                            screen = "9";
+                            jTextFieldScreen.setText(screen);
+                        } else {
+                            screen = "-9";
+                            jTextFieldScreen.setText(screen);
+                        }
+                    } else {
+                        screen = "9";
+                        jTextFieldScreen.setText(screen);
+                    }
+                    break;
+                }
+                case "plus" -> {
+                    screen = "9";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "9";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "9";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
             }
-            screen = "9";
-            jTextFieldScreen.setText(screen);
         }
         sign = "";
     }//GEN-LAST:event_jButton9MouseClicked
@@ -614,10 +888,38 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                         jTextFieldScreen.setText(screen);
                         screen = "";
                     } else {
-                        firstEntry = sum(firstEntry, Integer.parseInt(screen));
-                        screen = Integer.toString(firstEntry);
-                        jTextFieldScreen.setText(screen);
-                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                        switch (operation) {
+                            case "plus" -> {
+                                firstEntry = sum(firstEntry, Integer.parseInt(screen));
+                                screen = Integer.toString(firstEntry);
+                                jTextFieldScreen.setText(screen);
+                                jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                                screen = "";
+                                break;
+                            }
+                            case "minus" -> {
+                                secondEntry = Integer.parseInt(screen);
+                                if (secondEntry == firstEntry) {
+                                    jTextFieldScreen.setText("0");
+                                    jTextFieldMemory.setText("");
+                                    firstEntry = 0;
+                                    screen = "";
+                                } else {
+                                    screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                                    jTextFieldScreen.setText(screen);
+                                    firstEntry = Integer.parseInt(screen);
+                                    jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                                    screen = "";
+                                }
+                                break;
+                            }
+                            case "times" -> {
+                                break;
+                            }
+                            case "divide" -> {
+                                break;
+                            }
+                        }
                     }
                 }
                 break;
@@ -657,6 +959,12 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 }
                 break;
             }
+            case "times" -> {
+                break;
+            }
+            case "divide" -> {
+                break;
+            }
         }
         sign = "plus";
         operation = "plus";
@@ -665,6 +973,25 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private void jButtonEqualsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEqualsMouseClicked
         // TODO add your handling code here:
         switch (operation) {
+            case "bkspc" -> {
+                firstEntry = Integer.parseInt(screen);
+                jTextFieldMemory.setText(Integer.toString(firstEntry));
+                break;
+            }
+            case "equals" -> {
+                if (firstEntry == 0) {
+                    jTextFieldScreen.setText(screen);
+                } else {
+                    if (screen.isEmpty()) {
+                        //do nothing
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
+                }
+                break;
+            }
             case "" -> {
                 if (screen.isEmpty()) {
                     //happens when screen is "0"
@@ -690,11 +1017,18 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                         screen = "";
                     } else {
                         secondEntry = Integer.parseInt(screen);
-                        screen = Integer.toString(sum(firstEntry, secondEntry));
-                        jTextFieldScreen.setText(screen);
-                        firstEntry = Integer.parseInt(screen);
-                        jTextFieldMemory.setText(Integer.toString(firstEntry));
-                        screen = "";
+                        if (secondEntry == (firstEntry*-1)) {
+                            jTextFieldScreen.setText("0");
+                            jTextFieldMemory.setText("");
+                            firstEntry = 0;
+                            screen = "";
+                        } else {
+                            screen = Integer.toString(sum(firstEntry, secondEntry));
+                            jTextFieldScreen.setText(screen);
+                            firstEntry = Integer.parseInt(screen);
+                            jTextFieldMemory.setText(Integer.toString(firstEntry));
+                            screen = "";
+                        }
                     }
                 }
                 break;
@@ -714,10 +1048,18 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                     } else {
                         secondEntry = Integer.parseInt(screen);
                         if (secondEntry == firstEntry) {
-                            jTextFieldScreen.setText("0");
-                           jTextFieldMemory.setText("");
-                            firstEntry = 0;
-                            screen = "";
+                            screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                            if (Integer.parseInt(screen) == 0) {
+                                jTextFieldScreen.setText("0");
+                                jTextFieldMemory.setText("");
+                                firstEntry = 0;
+                                screen = "";
+                            } else {
+                                jTextFieldScreen.setText(screen);
+                                firstEntry = Integer.parseInt(screen);
+                                jTextFieldMemory.setText(Integer.toString(firstEntry));
+                                screen = "";
+                            }
                         } else {
                             screen = Integer.toString(subtraction(firstEntry, secondEntry));
                             jTextFieldScreen.setText(screen);
@@ -729,26 +1071,11 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 }
                 break;
             }
-            case "bkspc" -> {
-                firstEntry = Integer.parseInt(screen);
-                jTextFieldMemory.setText(Integer.toString(firstEntry));
+            case "times" -> {
                 break;
             }
-            case "equals" -> {
-                if (firstEntry == 0) {
-                    jTextFieldScreen.setText(screen);
-                } else {
-                    if (screen.isEmpty()) {
-                        //do nothing
-                    } else {
-                        firstEntry = Integer.parseInt(screen);
-                        jTextFieldMemory.setText(Integer.toString(firstEntry));
-                        screen = "";
-                    }
-                }
+            case "divide" -> {
                 break;
-            }
-            default -> {
             }
         }
         sign = "equals";
@@ -766,7 +1093,6 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                     if (screen.isEmpty()) {
                         screen = screen + "-";
                         jTextFieldScreen.setText(screen);
-                        screen = "";
                     } else {
                         //do nothing
                     }
@@ -784,7 +1110,6 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                     if (screen.isEmpty()) {
                         screen = screen + "-";
                         jTextFieldScreen.setText(screen);
-                        screen = "";
                     } else {
                         firstEntry = Integer.parseInt(screen);
                         screen = "";
@@ -796,10 +1121,38 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                         jTextFieldScreen.setText(screen);
                         screen = "";
                     } else {
-                        firstEntry = subtraction(firstEntry, Integer.parseInt(screen));
-                        screen = Integer.toString(firstEntry);
-                        jTextFieldScreen.setText(screen);
-                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                        switch (operation) {
+                            case "plus" -> {
+                                firstEntry = sum(firstEntry, Integer.parseInt(screen));
+                                screen = Integer.toString(firstEntry);
+                                jTextFieldScreen.setText(screen);
+                                jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                                screen = "";
+                                break;
+                            }
+                            case "minus" -> {
+                                secondEntry = Integer.parseInt(screen);
+                                if (secondEntry == firstEntry) {
+                                    jTextFieldScreen.setText("0");
+                                    jTextFieldMemory.setText("");
+                                    firstEntry = 0;
+                                    screen = "";
+                                } else {
+                                    screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                                    jTextFieldScreen.setText(screen);
+                                    firstEntry = Integer.parseInt(screen);
+                                    jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                                    screen = "";
+                                }
+                                break;
+                            }
+                            case "times" -> {
+                                break;
+                            }
+                            case "divide" -> {
+                                break;
+                            }
+                        }
                     }
                 }
                 break;
@@ -827,16 +1180,26 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             case "minus" -> {
                 if (firstEntry == 0) {
                     if (screen.isEmpty()) {
+                        jTextFieldScreen.setText(screen + "-");
                         jTextFieldMemory.setText("");
                     } else {
-                        firstEntry = Integer.parseInt(screen);
-                        screen = screen + "-";
-                        jTextFieldScreen.setText(screen);
-                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        if (screen.equals("-")) {
+                            //do nothing
+                        } else {
+                            firstEntry = Integer.parseInt(screen);
+                            screen = "";
+                            jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                        }
                     }
                 } else {
                     //do nothing
                 }
+                break;
+            }
+            case "times" -> {
+                break;
+            }
+            case "divide" -> {
                 break;
             }
         }
@@ -941,13 +1304,13 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private int subtraction(int A, int B) {
         return A - B;
     }
-    
+
     private int multiplication(int A, int B) {
         return A * B;
     }
-    
+
     private float division(int A, int B) {
-        return A/B;
+        return A / B;
     }
 
     @Override
