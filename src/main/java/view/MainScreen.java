@@ -9,6 +9,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     String screen = "";
     int firstEntry = 0, secondEntry = 0;
     String sign = "";
+    String operation = "";
 
     public MainScreen() {
         initComponents();
@@ -46,6 +47,9 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         jButtonMinus = new javax.swing.JButton();
         jButtonTimes = new javax.swing.JButton();
         jButtonDivide = new javax.swing.JButton();
+        jPanelMemory = new javax.swing.JPanel();
+        jTextFieldMemory = new javax.swing.JTextField();
+        jLabelTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,7 +57,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         jPanelCalculator.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonCE.setBackground(new java.awt.Color(255, 204, 204));
-        jButtonCE.setText("CE");
+        jButtonCE.setText("Clear");
         jButtonCE.setToolTipText("");
         jButtonCE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -233,10 +237,20 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         jButtonTimes.setBackground(new java.awt.Color(204, 255, 204));
         jButtonTimes.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jButtonTimes.setText("<html>\n&times;\n</html>");
+        jButtonTimes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonTimesMouseClicked(evt);
+            }
+        });
 
         jButtonDivide.setBackground(new java.awt.Color(204, 255, 204));
         jButtonDivide.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jButtonDivide.setText("<html>\n&divide;\n</html>");
+        jButtonDivide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonDivideMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelSignsLayout = new javax.swing.GroupLayout(jPanelSigns);
         jPanelSigns.setLayout(jPanelSignsLayout);
@@ -259,29 +273,55 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 .addComponent(jButtonDivide, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
         );
 
+        jTextFieldMemory.setEditable(false);
+        jTextFieldMemory.setFont(new java.awt.Font("DialogInput", 0, 14)); // NOI18N
+        jTextFieldMemory.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        javax.swing.GroupLayout jPanelMemoryLayout = new javax.swing.GroupLayout(jPanelMemory);
+        jPanelMemory.setLayout(jPanelMemoryLayout);
+        jPanelMemoryLayout.setHorizontalGroup(
+            jPanelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextFieldMemory, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanelMemoryLayout.setVerticalGroup(
+            jPanelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextFieldMemory, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitle.setText("JaCal 1.0");
+
         javax.swing.GroupLayout jPanelCalculatorLayout = new javax.swing.GroupLayout(jPanelCalculator);
         jPanelCalculator.setLayout(jPanelCalculatorLayout);
         jPanelCalculatorLayout.setHorizontalGroup(
             jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCalculatorLayout.createSequentialGroup()
+            .addGroup(jPanelCalculatorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCalculatorLayout.createSequentialGroup()
-                        .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonCE, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                            .addComponent(jButtonBackSpace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCalculatorLayout.createSequentialGroup()
+                .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCalculatorLayout.createSequentialGroup()
                         .addComponent(jPanelNumberPad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelSigns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelSigns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCalculatorLayout.createSequentialGroup()
+                        .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(jButtonBackSpace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelMemory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCalculatorLayout.setVerticalGroup(
             jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCalculatorLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCalculatorLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelMemory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelCalculatorLayout.createSequentialGroup()
@@ -292,7 +332,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 .addGroup(jPanelCalculatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelNumberPad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelSigns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -314,92 +354,223 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
         // TODO add your handling code here:
         if (screen.isEmpty()) {
             jTextFieldScreen.setText(screen + "0");
+            screen = "";
         } else {
-            screen = screen + "0";
-            jTextFieldScreen.setText(screen);
+            if (sign.isEmpty() || sign.equals("bkspc")) {
+                screen = screen + "0";
+                jTextFieldScreen.setText(screen);
+            } else {
+                if (sign.equals("equals")) {
+                    refreshEntries();
+                    refreshOperations();
+                }
+                screen = "0";
+                jTextFieldScreen.setText(screen);
+            }
         }
+        sign = "";
     }//GEN-LAST:event_jButton0MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        screen = screen + "1";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "1";
+            jTextFieldScreen.setText(screen);
+        } else {
+            switch (sign) {
+                case "equals" -> {
+                    refreshEntries();
+                    refreshOperations();
+                    screen = "1";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "minus" -> {
+                    screen = "-1";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "plus" -> {
+                    screen = "1";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "times" -> {
+                    screen = "1";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+                case "divide" -> {
+                    screen = "1";
+                    jTextFieldScreen.setText(screen);
+                    break;
+                }
+            }
+        }
+        sign = "";
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButtonCEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCEMouseClicked
         // TODO add your handling code here:
         refreshScreen();
         refreshEntries();
+        refreshOperations();
         sign = "";
     }//GEN-LAST:event_jButtonCEMouseClicked
 
     private void jButtonBackSpaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBackSpaceMouseClicked
         // TODO add your handling code here:
-        if (!screen.isEmpty()) {
-            if (firstEntry == 0) {
-                screen = screen.substring(0, (screen.length() - 1));
-                jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc") || sign.equals("equals")) {
+            if (screen.isEmpty()) {
+                if (firstEntry == 0) {
+                    jTextFieldMemory.setText("");
+                } else {
+                    screen = Integer.toString(firstEntry);
+                    firstEntry = 0;
+                    jTextFieldScreen.setText(screen);
+                    jTextFieldMemory.setText("");
+                }
             } else {
                 screen = screen.substring(0, (screen.length() - 1));
-                firstEntry = Integer.parseInt(screen);
                 jTextFieldScreen.setText(screen);
+                jTextFieldMemory.setText(Integer.toString(firstEntry));
             }
         } else {
-            if (firstEntry == 0) {
-            } else {
-                screen = Integer.toString(firstEntry);
-                jTextFieldScreen.setText(screen);
-            }
+            firstEntry = 0;
+            operation = "";
+            screen = screen.substring(0, (screen.length() - 1));
+            jTextFieldScreen.setText(screen);
+            jTextFieldMemory.setText("");
         }
         sign = "bkspc";
     }//GEN-LAST:event_jButtonBackSpaceMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        screen = screen + "2";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "2";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "2";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        screen = screen + "3";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "3";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "3";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        screen = screen + "4";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "4";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "4";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        screen = screen + "5";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "5";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "5";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        screen = screen + "6";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "6";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "6";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        screen = screen + "7";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "7";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "7";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
-        screen = screen + "8";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "8";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "8";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         // TODO add your handling code here:
-        screen = screen + "9";
-        jTextFieldScreen.setText(screen);
+        if (sign.isEmpty() || sign.equals("bkspc")) {
+            screen = screen + "9";
+            jTextFieldScreen.setText(screen);
+        } else {
+            if (sign.equals("equals")) {
+                refreshEntries();
+                refreshOperations();
+            }
+            screen = "9";
+            jTextFieldScreen.setText(screen);
+        }
+        sign = "";
     }//GEN-LAST:event_jButton9MouseClicked
 
     private void jButtonPlusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPlusMouseClicked
@@ -409,87 +580,281 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 break;
             }
             case "equals" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        screen = screen + "+";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        //do nothing
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                    } else {
+                        //do nothing
+                    }
+                }
                 break;
             }
             case "" -> {
-                
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        screen = screen + "+";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = "";
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        screen = screen + "+";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        firstEntry = sum(firstEntry, Integer.parseInt(screen));
+                        screen = Integer.toString(firstEntry);
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
+                    }
+                }
                 break;
             }
             case "plus" -> {
                 if (firstEntry == 0) {
                     if (screen.isEmpty()) {
-
+                        jTextFieldMemory.setText("");
                     } else {
                         firstEntry = Integer.parseInt(screen);
                         screen = screen + "+";
                         jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                    }
+                } else {
+                    //do nothing
+                }
+                break;
+            }
+            case "minus" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText("");
+                        jTextFieldScreen.setText("+");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = screen + "+";
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
                     }
                 } else {
                     if (screen.isEmpty()) {
-                        screen = Integer.toString(firstEntry) + "+";
-                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "+");
                     } else {
-                        firstEntry = sum(firstEntry, Integer.parseInt(screen));
-                        screen = Integer.toString(firstEntry) + "+";
-                        jTextFieldScreen.setText(screen);
-                        screen = "";
+                        //do nothing
                     }
                 }
                 break;
             }
         }
         sign = "plus";
+        operation = "plus";
     }//GEN-LAST:event_jButtonPlusMouseClicked
 
     private void jButtonEqualsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEqualsMouseClicked
         // TODO add your handling code here:
-        switch (sign) {
+        switch (operation) {
+            case "" -> {
+                if (screen.isEmpty()) {
+                    //happens when screen is "0"
+                    jTextFieldScreen.setText(screen);
+                } else {
+                    firstEntry = Integer.parseInt(screen);
+                    jTextFieldMemory.setText(Integer.toString(firstEntry));
+                    screen = "";
+                }
+            }
             case "plus" -> {
                 if (firstEntry == 0) {
-                    
-                } else {
-                    secondEntry = Integer.parseInt(screen);
-                    screen = Integer.toString(sum(firstEntry, secondEntry));
+                    //happens when screen is "0"
                     jTextFieldScreen.setText(screen);
-                    refreshEntries();
-                    firstEntry = Integer.parseInt(screen);
-                    screen = "";
+                    jTextFieldMemory.setText("");
+                } else {
+                    if (screen.isEmpty()) {
+                        secondEntry = firstEntry;
+                        screen = Integer.toString(sum(firstEntry, secondEntry));
+                        jTextFieldScreen.setText(screen);
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    } else {
+                        secondEntry = Integer.parseInt(screen);
+                        screen = Integer.toString(sum(firstEntry, secondEntry));
+                        jTextFieldScreen.setText(screen);
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
                 }
                 break;
             }
             case "minus" -> {
-                if (screen.isEmpty()) {
-                    screen = Integer.toString(firstEntry) + "-";
-                    screen = screen.substring(0, (screen.length() - 1));
+                if (firstEntry == 0) {
+                    //happens when screen is "0"
                     jTextFieldScreen.setText(screen);
-                    refreshEntries();
-                    screen = "";
+                    jTextFieldMemory.setText("");
                 } else {
-                    secondEntry = Integer.parseInt(screen);
-                    screen = Integer.toString(subtraction(firstEntry, secondEntry));
-                    jTextFieldScreen.setText(screen);
-                    refreshEntries();
-                    firstEntry = Integer.parseInt(screen);
-                    screen = "";
+                    if (screen.isEmpty()) {
+                        //result aways gonna be "0"
+                        jTextFieldScreen.setText("0");
+                        jTextFieldMemory.setText("");
+                        firstEntry = 0;
+                        screen = "";
+                    } else {
+                        secondEntry = Integer.parseInt(screen);
+                        if (secondEntry == firstEntry) {
+                            jTextFieldScreen.setText("0");
+                           jTextFieldMemory.setText("");
+                            firstEntry = 0;
+                            screen = "";
+                        } else {
+                            screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                            jTextFieldScreen.setText(screen);
+                            firstEntry = Integer.parseInt(screen);
+                            jTextFieldMemory.setText(Integer.toString(firstEntry));
+                            screen = "";
+                        }
+                    }
                 }
                 break;
             }
             case "bkspc" -> {
                 firstEntry = Integer.parseInt(screen);
+                jTextFieldMemory.setText(Integer.toString(firstEntry));
                 break;
             }
             case "equals" -> {
+                if (firstEntry == 0) {
+                    jTextFieldScreen.setText(screen);
+                } else {
+                    if (screen.isEmpty()) {
+                        //do nothing
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
+                }
                 break;
             }
             default -> {
             }
         }
         sign = "equals";
+        operation = "equals";
     }//GEN-LAST:event_jButtonEqualsMouseClicked
 
     private void jButtonMinusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinusMouseClicked
         // TODO add your handling code here:
+        switch (sign) {
+            case "bkspc" -> {
+                break;
+            }
+            case "equals" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        screen = screen + "-";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        //do nothing
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                    } else {
+                        //do nothing
+                    }
+                }
+                break;
+            }
+            case "" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        screen = screen + "-";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = "";
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        screen = screen + "-";
+                        jTextFieldScreen.setText(screen);
+                        screen = "";
+                    } else {
+                        firstEntry = subtraction(firstEntry, Integer.parseInt(screen));
+                        screen = Integer.toString(firstEntry);
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                    }
+                }
+                break;
+            }
+            case "plus" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText("");
+                        jTextFieldScreen.setText("-");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = screen + "-";
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "-");
+                    } else {
+                        //do nothing
+                    }
+                }
+                break;
+            }
+            case "minus" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText("");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = screen + "-";
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                    }
+                } else {
+                    //do nothing
+                }
+                break;
+            }
+        }
+        sign = "minus";
+        operation = "minus";
     }//GEN-LAST:event_jButtonMinusMouseClicked
+
+    private void jButtonTimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonTimesMouseClicked
+        // TODO add your handling code here:
+        sign = "times";
+        operation = "times";
+    }//GEN-LAST:event_jButtonTimesMouseClicked
+
+    private void jButtonDivideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDivideMouseClicked
+        // TODO add your handling code here:
+        sign = "divide";
+        operation = "divide";
+    }//GEN-LAST:event_jButtonDivideMouseClicked
 
     /**
      * @param args the command line arguments
@@ -544,9 +909,12 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private javax.swing.JButton jButtonMinus;
     private javax.swing.JButton jButtonPlus;
     private javax.swing.JButton jButtonTimes;
+    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelCalculator;
+    private javax.swing.JPanel jPanelMemory;
     private javax.swing.JPanel jPanelNumberPad;
     private javax.swing.JPanel jPanelSigns;
+    private javax.swing.JTextField jTextFieldMemory;
     private javax.swing.JTextField jTextFieldScreen;
     // End of variables declaration//GEN-END:variables
 
@@ -558,6 +926,12 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private void refreshEntries() {
         firstEntry = 0;
         secondEntry = 0;
+        jTextFieldMemory.setText("");
+    }
+
+    private void refreshOperations() {
+        sign = "";
+        operation = "";
     }
 
     private int sum(int A, int B) {
@@ -567,6 +941,14 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
     private int subtraction(int A, int B) {
         return A - B;
     }
+    
+    private int multiplication(int A, int B) {
+        return A * B;
+    }
+    
+    private float division(int A, int B) {
+        return A/B;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -575,22 +957,6 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        switch (e.getKeyCode()) {
-//            case 96 -> {
-//                if (screen.isEmpty()) {
-//                    jTextFieldScreen.setText(screen + "0");
-//                } else {
-//                    screen = screen + "0";
-//                    jTextFieldScreen.setText(screen);
-//                }
-//                break;
-//            }
-//            case 97 -> {
-//                screen = screen + "1";
-//                jTextFieldScreen.setText(screen);
-//                break;
-//            }
-//        }
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
