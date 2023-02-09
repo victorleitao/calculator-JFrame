@@ -1004,9 +1004,15 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             }
             case "plus" -> {
                 if (firstEntry == 0) {
-                    //happens when screen is "0"
-                    jTextFieldScreen.setText(screen);
-                    jTextFieldMemory.setText("");
+                    if (screen.isEmpty()) {
+                        //happens when screen is "0"
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText("");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
                 } else {
                     if (screen.isEmpty()) {
                         secondEntry = firstEntry;
@@ -1017,7 +1023,7 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                         screen = "";
                     } else {
                         secondEntry = Integer.parseInt(screen);
-                        if (secondEntry == (firstEntry*-1)) {
+                        if (secondEntry == (firstEntry * -1)) {
                             jTextFieldScreen.setText("0");
                             jTextFieldMemory.setText("");
                             firstEntry = 0;
@@ -1035,9 +1041,15 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
             }
             case "minus" -> {
                 if (firstEntry == 0) {
-                    //happens when screen is "0"
-                    jTextFieldScreen.setText(screen);
-                    jTextFieldMemory.setText("");
+                    if (screen.isEmpty()) {
+                        //happens when screen is "0"
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText("");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
                 } else {
                     if (screen.isEmpty()) {
                         //result aways gonna be "0"
@@ -1072,6 +1084,40 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 break;
             }
             case "times" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        //happens when screen is "0"
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText("");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        if (sign.equals("")) {
+                            jTextFieldScreen.setText("0");
+                            jTextFieldMemory.setText("");
+                            firstEntry = 0;
+                            screen = "";
+                        } else {
+                            secondEntry = firstEntry;
+                            screen = Integer.toString(multiplication(firstEntry, secondEntry));
+                            jTextFieldScreen.setText(screen);
+                            firstEntry = Integer.parseInt(screen);
+                            jTextFieldMemory.setText(Integer.toString(firstEntry));
+                            screen = "";
+                        }
+                    } else {
+                        secondEntry = Integer.parseInt(screen);
+                        screen = Integer.toString(multiplication(firstEntry, secondEntry));
+                        jTextFieldScreen.setText(screen);
+                        firstEntry = Integer.parseInt(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                        screen = "";
+                    }
+                }
                 break;
             }
             case "divide" -> {
@@ -1181,7 +1227,6 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 if (firstEntry == 0) {
                     if (screen.isEmpty()) {
                         jTextFieldScreen.setText(screen + "-");
-                        jTextFieldMemory.setText("");
                     } else {
                         if (screen.equals("-")) {
                             //do nothing
@@ -1197,6 +1242,19 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
                 break;
             }
             case "times" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldScreen.setText(screen + "-");
+                    } else {
+
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+
+                    } else {
+
+                    }
+                }
                 break;
             }
             case "divide" -> {
@@ -1209,6 +1267,137 @@ public class MainScreen extends javax.swing.JFrame implements KeyListener {
 
     private void jButtonTimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonTimesMouseClicked
         // TODO add your handling code here:
+        switch (sign) {
+            case "bkspc" -> {
+                break;
+            }
+            case "equals" -> {
+                if (firstEntry == 0) {
+                    //do nothing
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "×");
+                    } else {
+                        //do nothing
+                    }
+                }
+                break;
+            }
+            case "" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldScreen.setText(screen);
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = "";
+                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "×");
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldScreen.setText("0");
+                        jTextFieldMemory.setText("");
+                        firstEntry = 0;
+                        screen = "";
+                    } else {
+                        switch (operation) {
+                            case "plus" -> {
+                                firstEntry = sum(firstEntry, Integer.parseInt(screen));
+                                screen = Integer.toString(firstEntry);
+                                jTextFieldScreen.setText(screen);
+                                jTextFieldMemory.setText(Integer.toString(firstEntry) + "×");
+                                screen = "";
+                                break;
+                            }
+                            case "minus" -> {
+                                secondEntry = Integer.parseInt(screen);
+                                if (secondEntry == firstEntry) {
+                                    jTextFieldScreen.setText("0");
+                                    jTextFieldMemory.setText("");
+                                    firstEntry = 0;
+                                    screen = "";
+                                } else {
+                                    screen = Integer.toString(subtraction(firstEntry, secondEntry));
+                                    jTextFieldScreen.setText(screen);
+                                    firstEntry = Integer.parseInt(screen);
+                                    jTextFieldMemory.setText(Integer.toString(firstEntry) + "×");
+                                    screen = "";
+                                }
+                                break;
+                            }
+                            case "times" -> {
+                                if (firstEntry == 0) {
+                                    //happens when screen is "0"
+                                    jTextFieldScreen.setText(screen);
+                                    jTextFieldMemory.setText("");
+                                } else {
+                                    if (screen.isEmpty()) {
+                                        jTextFieldScreen.setText("0");
+                                        jTextFieldMemory.setText("");
+                                        firstEntry = 0;
+                                        screen = "";
+                                    } else {
+                                        secondEntry = Integer.parseInt(screen);
+                                        screen = Integer.toString(multiplication(firstEntry, secondEntry));
+                                        jTextFieldScreen.setText(screen);
+                                        firstEntry = Integer.parseInt(screen);
+                                        jTextFieldMemory.setText(Integer.toString(firstEntry) + "×");
+                                        screen = "";
+                                    }
+                                }
+                                break;
+                            }
+                            case "divide" -> {
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+            case "plus" -> {
+
+                break;
+            }
+            case "minus" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        screen = "";
+                        jTextFieldScreen.setText(screen);
+                    } else {
+                        screen = "";
+                        jTextFieldScreen.setText(screen);
+                    }
+                } else {
+                    if (screen.isEmpty()) {
+                        jTextFieldScreen.setText("0");
+                        jTextFieldMemory.setText("");
+                        firstEntry = 0;
+                        screen = "";
+                    } else {
+                        //do nothing
+                    }
+                }
+                break;
+            }
+            case "times" -> {
+                if (firstEntry == 0) {
+                    if (screen.isEmpty()) {
+                        jTextFieldMemory.setText("");
+                    } else {
+                        firstEntry = Integer.parseInt(screen);
+                        screen = screen + "*";
+                        jTextFieldScreen.setText(screen);
+                        jTextFieldMemory.setText(Integer.toString(firstEntry));
+                    }
+                } else {
+                    //do nothing
+                }
+                break;
+            }
+            case "divide" -> {
+                break;
+            }
+        }
         sign = "times";
         operation = "times";
     }//GEN-LAST:event_jButtonTimesMouseClicked
